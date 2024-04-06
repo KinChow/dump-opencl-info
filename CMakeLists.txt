@@ -31,6 +31,7 @@ configure_file(
 )
 
 set(EXTERNAL_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/external)
+set(EXTERNAL_INCLUDE_ARGPARSE_DIR ${PROJECT_SOURCE_DIR}/external/argparse/include)
 set(EXTERNAL_INCLUDE_JSON_DIR ${PROJECT_SOURCE_DIR}/external/json/single_include)
 set(LIB_LOADER_DIR external/lib_loader)
 
@@ -38,6 +39,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/${LIB_LOADER_DIR})
 
 include_directories(
     ${EXTERNAL_INCLUDE_DIR}
+    ${EXTERNAL_INCLUDE_ARGPARSE_DIR}
     ${EXTERNAL_INCLUDE_JSON_DIR}
     ${PROJECT_BINARY_DIR}/${LIB_LOADER_DIR}/output
     ${PROJECT_SOURCE_DIR}/include
