@@ -51,3 +51,5 @@ aux_source_directory(${PROJECT_SOURCE_DIR}/src SRC_DIR)
 add_executable(${PROJECT_NAME} ${SRC_DIR})
 
 target_link_libraries(${PROJECT_NAME} LibLoader)
+
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/output)
