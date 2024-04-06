@@ -1,3 +1,6 @@
 [submodule "builder"]
 	path = builder
 	url = https://github.com/KinChow/builder.git
+[submodule "external/json"]
+	path = external/json
+	url = https://github.com/nlohmann/json.git
