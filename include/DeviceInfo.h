@@ -95,7 +95,6 @@ private:
     std::string m_profile;
     std::string m_version;
     std::string m_extensions;
-    OCLLibLoader m_oclLibLoader;
 };
 
 #endif  // DEVICE_INFO_H

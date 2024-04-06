@@ -22,7 +22,6 @@ private:
     cl_uint m_platformNum = 0;
     cl_int m_err = CL_SUCCESS;
     std::vector<std::shared_ptr<Platform>> m_platforms;
-    OCLLibLoader m_oclLibLoader;
 };
 
 #endif  // PLATFORMS_H

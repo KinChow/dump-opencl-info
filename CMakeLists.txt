@@ -18,7 +18,7 @@ endif()
 string(TIMESTAMP COMPILE_TIME %y%m%d_%H%M%S)
 set(VERSION_MAJOR 1)
 set(VERSION_MINOR 0)
-set(VERSION_PATCH 2)
+set(VERSION_PATCH 3)
 set(VERSION_TWEAK 0)
 
 project(${PROJECT_NAME})
@@ -30,30 +30,28 @@ configure_file(
     "${PROJECT_BINARY_DIR}/config.h"
 )
 
-set(EXTERNAL_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/external)
-set(EXTERNAL_INCLUDE_ARGPARSE_DIR ${PROJECT_SOURCE_DIR}/external/argparse/include)
-set(EXTERNAL_INCLUDE_JSON_DIR ${PROJECT_SOURCE_DIR}/external/json/single_include)
-set(LIB_LOADER_DIR external/lib_loader)
+set(ARGPARSE_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/external/argparse/include)
+set(JSON_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/external/json/single_include)
+set(OPENCL_WRAPPER_DIR ${PROJECT_SOURCE_DIR}/external/opencl-wrapper)
 
-add_subdirectory(${PROJECT_SOURCE_DIR}/${LIB_LOADER_DIR})
+add_subdirectory(${OPENCL_WRAPPER_DIR})
 
 include_directories(
-    ${EXTERNAL_INCLUDE_DIR}
-    ${EXTERNAL_INCLUDE_ARGPARSE_DIR}
-    ${EXTERNAL_INCLUDE_JSON_DIR}
-    ${PROJECT_BINARY_DIR}/${LIB_LOADER_DIR}/output
+    ${ARGPARSE_INCLUDE_DIR}
+    ${JSON_INCLUDE_DIR}
+    ${CMAKE_SOURCE_DIR}/output
     ${PROJECT_SOURCE_DIR}/include
     ${PROJECT_BINARY_DIR}
 )
 
 link_directories(
-    ${PROJECT_BINARY_DIR}/${LIB_LOADER_DIR}/output
+    ${CMAKE_SOURCE_DIR}/output
 )
 
 aux_source_directory(${PROJECT_SOURCE_DIR}/src SRC_DIR)
 
 add_executable(${PROJECT_NAME} ${SRC_DIR})
 
-target_link_libraries(${PROJECT_NAME} LibLoader)
+target_link_libraries(${PROJECT_NAME} OpenCLWrapper)
 
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/output)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/output)

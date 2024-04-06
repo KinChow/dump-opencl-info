@@ -9,7 +9,7 @@
 
 Platforms::Platforms()
 {
-    m_err = m_oclLibLoader.GetPlatformIDs(0, nullptr, &m_platformNum);
+    m_err = clGetPlatformIDs(0, nullptr, &m_platformNum);
     if (m_err != CL_SUCCESS) {
         LOGE("run opencl failed! err=%d", m_err);
         return;
@@ -22,7 +22,7 @@ Platforms::Platforms()
     if (m_platformIds == nullptr) {
         return;
     }
-    m_err = m_oclLibLoader.GetPlatformIDs(m_platformNum, m_platformIds.get(), nullptr);
+    m_err = clGetPlatformIDs(m_platformNum, m_platformIds.get(), nullptr);
     if (m_err != CL_SUCCESS) {
         LOGE("run opencl failed! err=%d", m_err);
         m_platformIds.reset();

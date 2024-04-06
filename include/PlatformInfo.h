@@ -27,7 +27,6 @@ private:
     std::string m_name;
     std::string m_vendor;
     std::string m_extensions;
-    OCLLibLoader m_oclLibLoader;
 };
 
 #endif  // PLATFORM_INFO_H

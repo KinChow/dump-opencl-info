@@ -9,13 +9,13 @@
 
 Devices::Devices(cl_platform_id platformId)
 {
-    m_err = m_oclLibLoader.GetDeviceIDs(platformId, CL_DEVICE_TYPE_ALL, 0, nullptr, &m_deviceNum);
+    m_err = clGetDeviceIDs(platformId, CL_DEVICE_TYPE_ALL, 0, nullptr, &m_deviceNum);
     if (m_err != CL_SUCCESS) {
         LOGE("run opencl failed! err=%d", m_err);
         return;
     }
     m_deviceIds.reset(new (std::nothrow) cl_device_id[m_deviceNum]);
-    m_err = m_oclLibLoader.GetDeviceIDs(platformId, CL_DEVICE_TYPE_ALL, m_deviceNum, m_deviceIds.get(), nullptr);
+    m_err = clGetDeviceIDs(platformId, CL_DEVICE_TYPE_ALL, m_deviceNum, m_deviceIds.get(), nullptr);
     if (m_err != CL_SUCCESS) {
         LOGE("run opencl failed! err=%d", m_err);
         m_deviceIds.reset();

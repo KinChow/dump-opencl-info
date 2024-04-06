@@ -7,17 +7,16 @@
 
 #include "PlatformInfo.h"
 
-void GetPlatformInfo(OCLLibLoader &oclLibLoader, cl_platform_id platformId, cl_platform_info param_name, cl_int &err,
-    std::string &info)
+void GetPlatformInfo(cl_platform_id platformId, cl_platform_info param_name, cl_int &err, std::string &info)
 {
     size_t infoSize;
-    err = oclLibLoader.GetPlatformInfo(platformId, param_name, 0, nullptr, &infoSize);
+    err = clGetPlatformInfo(platformId, param_name, 0, nullptr, &infoSize);
     if (err != CL_SUCCESS) {
         LOGE("run opencl failed! err=%d", err);
         return;
     }
     std::unique_ptr<char[]> upInfo(new (std::nothrow) char[infoSize]);
-    err = oclLibLoader.GetPlatformInfo(platformId, param_name, infoSize, upInfo.get(), nullptr);
+    err = clGetPlatformInfo(platformId, param_name, infoSize, upInfo.get(), nullptr);
     if (err != CL_SUCCESS) {
         LOGE("run opencl failed! err=%d", err);
         return;
@@ -27,11 +26,11 @@ void GetPlatformInfo(OCLLibLoader &oclLibLoader, cl_platform_id platformId, cl_p
 
 PlatformInfo::PlatformInfo(cl_platform_id platformId)
 {
-    GetPlatformInfo(m_oclLibLoader, platformId, CL_PLATFORM_PROFILE, m_err, m_profile);
-    GetPlatformInfo(m_oclLibLoader, platformId, CL_PLATFORM_VERSION, m_err, m_version);
-    GetPlatformInfo(m_oclLibLoader, platformId, CL_PLATFORM_NAME, m_err, m_name);
-    GetPlatformInfo(m_oclLibLoader, platformId, CL_PLATFORM_VENDOR, m_err, m_vendor);
-    GetPlatformInfo(m_oclLibLoader, platformId, CL_PLATFORM_EXTENSIONS, m_err, m_extensions);
+    GetPlatformInfo(platformId, CL_PLATFORM_PROFILE, m_err, m_profile);
+    GetPlatformInfo(platformId, CL_PLATFORM_VERSION, m_err, m_version);
+    GetPlatformInfo(platformId, CL_PLATFORM_NAME, m_err, m_name);
+    GetPlatformInfo(platformId, CL_PLATFORM_VENDOR, m_err, m_vendor);
+    GetPlatformInfo(platformId, CL_PLATFORM_EXTENSIONS, m_err, m_extensions);
 }
 
 const std::string &PlatformInfo::GetProfile()

@@ -22,7 +22,6 @@ private:
     cl_uint m_deviceNum = 0;
     cl_int m_err = CL_SUCCESS;
     std::vector<std::shared_ptr<Device>> m_devices;
-    OCLLibLoader m_oclLibLoader;
 };
 
 #endif  // DEVICES_H

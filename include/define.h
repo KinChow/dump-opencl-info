@@ -13,10 +13,9 @@
 #include <memory>
 #include <utility>
 #include <iostream>
-#include <CL/cl.h>
+#include "CL/opencl.h"
 #include "config.h"
 #include "log.h"
-#include "OCLLibLoader.h"
 
 constexpr int OK = 0;
 constexpr int NG = -1;
